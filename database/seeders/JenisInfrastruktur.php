@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\JenisInfrastruktur as ModelsJenisInfrastruktur;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,5 +18,11 @@ class JenisInfrastruktur extends Seeder
             'Perkerasan Jalan',
             'Perlengkapan Jalan',
         ];
+
+        foreach ($jenisData as $jenis) {
+            ModelsJenisInfrastruktur::create([
+                'nama' => $jenis,
+            ]);
+        }
     }
 }
