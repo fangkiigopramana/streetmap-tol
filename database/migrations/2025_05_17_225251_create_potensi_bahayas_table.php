@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Lokasi::class, 'lokasi_id');
             $table->foreignIdFor(JenisInfrastruktur::class, 'infrastruktur_id');
             $table->string('potensi_bahaya');
-            $table->string('effect_of_failure');
+            $table->text('effect_of_failure');
             $table->text('gambar');
             $table->timestamps();
         });
