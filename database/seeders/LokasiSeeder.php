@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Lokasi;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,7 +23,7 @@ class LokasiSeeder extends Seeder
 
             // KM 190 - 191
             ['nama' => 'KM 190 - 191 A', 'latitude' => -6.689734907909126, 'longitude' => 108.43885081457677],
-            ['nama' => 'KM 190 - 191 B', '  latitude' => -6.689956745144899, 'longitude' => 108.44474738844374],
+            ['nama' => 'KM 190 - 191 B', 'latitude' => -6.689956745144899, 'longitude' => 108.44474738844374],
 
             // KM 191 - 192
             ['nama' => 'KM 191 - 192 A', 'latitude' => -6.690017433676063, 'longitude' => 108.44746622248093],
@@ -106,5 +107,9 @@ class LokasiSeeder extends Seeder
             ['nama' => 'KM 214 - 215 C', 'latitude' => -6.79914771503297, 'longitude' => 108.61941966551805],
             ['nama' => 'KM 214 - 215 D', 'latitude' => -6.799347512628024, 'longitude' => 108.62193546873075],
         ];
+
+        foreach ($lokasiData as $data) {
+            Lokasi::create($data);
+        }
     }
 }

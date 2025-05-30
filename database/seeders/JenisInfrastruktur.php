@@ -13,7 +13,6 @@ class JenisInfrastruktur extends Seeder
     public function run(): void
     {
         $jenisData = [
-            'Jenis Infrastruktur',
             'Fasilitas Jalan',
             'Perkerasan Jalan',
             'Perlengkapan Jalan',

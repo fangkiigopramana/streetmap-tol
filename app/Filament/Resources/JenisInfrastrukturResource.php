@@ -17,7 +17,7 @@ class JenisInfrastrukturResource extends Resource
 {
     protected static ?string $model = JenisInfrastruktur::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-adjustments-horizontal';
 
     public static function form(Form $form): Form
     {
@@ -26,6 +26,10 @@ class JenisInfrastrukturResource extends Resource
                 Forms\Components\TextInput::make('nama')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\ColorPicker::make('warna')
+                    ->default('#000000')
+                    ->label('Warna Kategori')
+                    ->helperText('Pilih warna untuk kategori ini.'),
             ]);
     }
 
@@ -35,6 +39,7 @@ class JenisInfrastrukturResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
+                Tables\Columns\ColorColumn::make('warna'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

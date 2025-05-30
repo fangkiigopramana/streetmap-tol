@@ -16,6 +16,7 @@ Route::get('/', function () {
                 'latitude' => $item->lokasi->latitude ?? '-',
                 'longitude' => $item->lokasi->longitude ?? '-',
                 'keterangan' => $item->effect_of_failure ?? '-',
+                'gambar' => $item->gambar ?? '-',
             ];
         });
     $jenis = JenisInfrastruktur::all();

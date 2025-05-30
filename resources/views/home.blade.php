@@ -60,7 +60,7 @@
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
             <a href="index.html" class="logo d-flex align-items-center me-auto">
-                <h1 class="sitename">Web GIS</h1>
+                <h1 class="sitename">SIKAP</h1>
             </a>
         </div>
     </header>
@@ -74,7 +74,7 @@
                 <div class="row gy-4">
                     <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center"
                         data-aos="zoom-out">
-                        <h1>Pemetaan Wilayah Infrastruktur Jalan</h1>
+                        <h1>Pemetaan Potensi Bahaya Di Jalan Tol Palikanci</h1>
                         <p>Website ini menyajikan informasi pemetaan wilayah infrastruktur jalan beserta potensi bahaya
                             seperti rawan kecelakaan dan bencana.</p>
                         <div class="d-flex">
@@ -103,9 +103,9 @@
 
         <div class="footer-newsletter">
             <div class="container">
-                <h2>Peta Titik Rawan Kecelakaan dan Bencana</h2>
+                <h2>Peta Potensi Bahaya</h2>
 
-                <label for="kategoriFilter">Tampilkan Kategori:</label>
+                <label class="mb-4" for="kategoriFilter">Tampilkan Kategori:</label>
                 <select id="kategoriFilter">
                     <option value="semua">Semua</option>
                     @foreach ($jenis as $j)
@@ -156,25 +156,30 @@
 
         const markers = [];
 
-        function getMarkerColor(kategori) {
-            console.log(kategori)
-            return kategori === 'Fasilitas Jalan' ? 'red' : ('Perkerasan Jalan' ? 'yellow' : 'black');
+        function getMarkerColor(kategoriId) {
+            switch (kategoriId) {
+            @foreach ($jenis as $j)
+                case {{ $j->id }}:
+                return '{{ $j->warna }}';
+            @endforeach
+            default:
+                return 'blue';
+            }
         }
 
         function createMarker(data) {
-            const icon = L.icon({
-                iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${getMarkerColor(data.kategori)}.png`,
-                iconSize: [25, 41],
-                iconAnchor: [12, 41],
-                popupAnchor: [1, -34],
-                shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-                shadowSize: [41, 41]
+            const icon = L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style="background:${getMarkerColor(data.id_jenis)};width:24px;height:24px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 4px #888;"></div>`,
+                iconSize: [24, 24],
+                iconAnchor: [12, 24],
+                popupAnchor: [0, -24]
             });
 
             return L.marker([data.latitude, data.longitude], {
                     icon: icon
                 })
-                .bindPopup(`<b>${data.jalan_tol}</b><br>${data.km}<br>${data.keterangan}`);
+                .bindPopup(`<img src='/storage/${data.gambar}' width='200' height='200'/><br><b>${data.jalan_tol}</b><br><span class='fst-italic mb-3'>${data.km}</span><br>${data.keterangan}`);
         }
 
         function renderMarkers(filter = 'semua') {
@@ -204,12 +209,13 @@
 
         // Legenda
         const legend = L.control({
-            position: 'bottomright'
+            position: 'topright'
         });
         legend.onAdd = function() {
             const div = L.DomUtil.create('div', 'legend');
-            div.innerHTML += '<i style="background: red"></i> Rawan Kecelakaan<br>';
-            div.innerHTML += '<i style="background: blue"></i> Rawan Bencana';
+            @foreach ($jenis as $j)
+                div.innerHTML += '<i style="background: {{ $j->warna }}"></i> {{ $j->nama }}<br>';
+            @endforeach
             return div;
         };
         legend.addTo(map);
