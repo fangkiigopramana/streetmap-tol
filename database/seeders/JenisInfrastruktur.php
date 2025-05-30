@@ -22,6 +22,12 @@ class JenisInfrastruktur extends Seeder
         foreach ($jenisData as $jenis) {
             ModelsJenisInfrastruktur::create([
                 'nama' => $jenis,
+                'warna' => match ($jenis) {
+                    'Fasilitas Jalan' => '#FF5733', // Red
+                    'Perkerasan Jalan' => '#33FF57', // Green
+                    'Perlengkapan Jalan' => '#3357FF', // Blue
+                    default => '#000000', // Default to black if not matched
+                },
             ]);
         }
     }
