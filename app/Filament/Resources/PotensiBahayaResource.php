@@ -98,6 +98,7 @@ class PotensiBahayaResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->defaultGroup('lokasi.nama')
+            ->searchable()
             ->filters([
                 //
             ])
