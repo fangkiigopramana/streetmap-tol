@@ -43,11 +43,9 @@ class PotensiBahayaResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('potensi_bahaya')
                     ->required()
-                    ->maxLength(255)
                     ->columnSpanFull(),
                 Forms\Components\Textarea::make('effect_of_failure')
                     ->required()
-                    ->maxLength(255)
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('gambar')
                     ->required()
