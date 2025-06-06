@@ -77,14 +77,16 @@ class PotensiBahayaResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('jenisInfrastruktur.nama')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('effect_of_failure')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('riskLevel.name')
                     ->label('Level Risiko')
                     ->sortable()
                     ->badge()
-                    ->color(fn ($record) => $record->riskLevel ? $record->riskLevel->color : 'gray'),
+                    ->color(fn ($record) => $record->riskLevel ? $record->riskLevel->color : 'gray')
+                    ->searchable(),
                 Tables\Columns\ImageColumn::make('gambar'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
