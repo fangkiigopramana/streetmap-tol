@@ -184,7 +184,7 @@
                 <br>
                 <b>${data.jalan_tol}</b>
                 <br>
-                <b>${data.risk_level}</b>
+                <b>Risk Level: ${data.risk_level}</b>
                 <br>
                 <span class='fst-italic mb-3'>${data.km}</span>
                 <br>
