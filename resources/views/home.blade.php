@@ -179,7 +179,17 @@
             return L.marker([data.latitude, data.longitude], {
                     icon: icon
                 })
-                .bindPopup(`<img src='/storage/${data.gambar}' width='200' height='200'/><br><b>${data.jalan_tol}</b><br><span class='fst-italic mb-3'>${data.km}</span><br>${data.keterangan}`);
+                .bindPopup(`
+                <img src='/storage/${data.gambar}' width='200' height='200'/>
+                <br>
+                <b>${data.jalan_tol}</b>
+                <br>
+                <b>${data.risk_level}</b>
+                <br>
+                <span class='fst-italic mb-3'>${data.km}</span>
+                <br>
+                ${data.keterangan}
+                `);
         }
 
         function renderMarkers(filter = 'semua') {
