@@ -18,4 +18,9 @@ class PotensiBahaya extends Model
     {
         return $this->belongsTo(JenisInfrastruktur::class, 'infrastruktur_id', 'id');
     }
+
+    public function riskLevel(): BelongsTo
+    {
+        return $this->belongsTo(RiskLevel::class, 'risk_level_id', 'id');
+    }
 }

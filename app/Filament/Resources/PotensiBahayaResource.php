@@ -11,6 +11,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -37,6 +38,19 @@ class PotensiBahayaResource extends Resource
                             ->required(),
                         Forms\Components\TextInput::make('longitude')
                             ->required(),
+                    ]),
+                Forms\Components\Select::make('risk_level_id')
+                    ->relationship('riskLevel', 'name')
+                    ->required()
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\ColorPicker::make('color')
+                            ->default('#000000') // Default color set to black
+                            ->required()
+                            ->label('Color')
+                            ->helperText('Pilih warna untuk level risiko ini.'),
                     ]),
                 Forms\Components\Select::make('infrastruktur_id')
                     ->relationship('jenisInfrastruktur', 'nama')
@@ -66,6 +80,11 @@ class PotensiBahayaResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('effect_of_failure')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('riskLevel.name')
+                    ->label('Level Risiko')
+                    ->sortable()
+                    ->badge()
+                    ->color(fn ($record) => $record->riskLevel ? $record->riskLevel->color : 'gray'),
                 Tables\Columns\ImageColumn::make('gambar'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
