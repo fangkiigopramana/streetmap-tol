@@ -170,7 +170,7 @@
         function createMarker(data) {
             const icon = L.divIcon({
                 className: 'custom-div-icon',
-                html: `<div style="background:${getMarkerColor(data.id_jenis)};width:24px;height:24px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 4px #888;"></div>`,
+                html: `<div style="background:${getMarkerColor(data.id_jenis)};width:24px;height:24px;border-radius:50%;border:4px solid ${data.risk_level_color};box-shadow:0 0 4px #888;"></div>`,
                 iconSize: [24, 24],
                 iconAnchor: [12, 24],
                 popupAnchor: [0, -24]

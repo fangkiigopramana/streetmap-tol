@@ -13,6 +13,7 @@ Route::get('/', function () {
                 'kategori' => $item->jenisInfrastruktur->nama ?? '-',
                 'jalan_tol' => $item->lokasi->nama ?? '-',
                 'risk_level' => $item->riskLevel->name ?? 'Belum ditentukan',
+                'risk_level_color' => $item->riskLevel->color ?? 'Belum ditentukan',
                 'km' => $item->potensi_bahaya ?? '-',
                 'latitude' => $item->lokasi->latitude ?? '-',
                 'longitude' => $item->lokasi->longitude ?? '-',
