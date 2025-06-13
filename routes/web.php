@@ -2,6 +2,7 @@
 
 use App\Models\JenisInfrastruktur;
 use App\Models\PotensiBahaya;
+use App\Models\RiskLevel;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,5 +23,6 @@ Route::get('/', function () {
             ];
         });
     $jenis = JenisInfrastruktur::all();
-    return view('home', compact('lokasi', 'jenis'));
+    $risk_levels = RiskLevel::all();
+    return view('home', compact('lokasi', 'jenis',  'risk_levels'));
 });

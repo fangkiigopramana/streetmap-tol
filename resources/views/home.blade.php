@@ -223,8 +223,14 @@
         });
         legend.onAdd = function() {
             const div = L.DomUtil.create('div', 'legend');
+            div.innerHTML += '<b>Kategori:</b><br>';
             @foreach ($jenis as $j)
-                div.innerHTML += '<i style="background: {{ $j->warna }}"></i> {{ $j->nama }}<br>';
+            div.innerHTML += '<i style="background: {{ $j->warna }}"></i> {{ $j->nama }}<br>';
+            @endforeach
+            div.innerHTML += '<hr style="margin:6px 0;">';
+            div.innerHTML += '<b>Risk Level:</b><br>';
+            @foreach ($risk_levels as $risk_level)
+            div.innerHTML += '<i style="background: {{ $risk_level->color }}"></i> {{ $risk_level->nama }}<br>';
             @endforeach
             return div;
         };
