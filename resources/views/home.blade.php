@@ -230,7 +230,7 @@
             div.innerHTML += '<hr style="margin:6px 0;">';
             div.innerHTML += '<b>Risk Level:</b><br>';
             @foreach ($risk_levels as $risk_level)
-            div.innerHTML += '<i style="background: {{ $risk_level->color }}"></i> {{ $risk_level->nama }}<br>';
+            div.innerHTML += '<i style="background: {{ $risk_level->color }}"></i> {{ $risk_level->name }}<br>';
             @endforeach
             return div;
         };
